@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,300;0,400;0,800;1,100;1,300;1,400;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap");
+
+:root {
+  --gray-1: #3f3f3f;
+  --gray-2: #32353a;
+  --gray-3: #25282c;
+  --gray-4: #151618;
+  --gray-5: #151618;
+  --gray-6: #111111;
+  --white-1: #eeeeee;
+  --white-2: #a9abb3;
+  --primary: #e7c665;
+  --secondary: #233a43;
+  color-scheme: dark;
+}
+* {
+  font-family: inherit;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  -webkit-user-drag: none;
+  -moz-window-dragging: none;
+  -webkit-tap-highlight-color: transparent;
+}
+* img {
+  max-width: 100%;
+}
+html,
+body {
+  color: var(--white-2);
+  background-color: var(--gray-6);
+  font-family: "Nunito Sans", sans-serif;
+  /* font-family: "JetBrains Mono", monospace; */
+  line-height: 2rem;
+  background-color: var(--gray-5);
+}
+h1,
+h2,
+h3 {
+  font-family: "JetBrains Mono", monospace;
+}
+a {
+  color: var(--primary);
+}
