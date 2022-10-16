@@ -3,30 +3,41 @@ import { graphql } from "gatsby"
 import PostLayout from "../components/post-layout"
 import * as postStyles from "../post.module.css"
 import { ThemeProvider } from "../context/ThemeContext"
+import { PageProvider } from "../context/PageContext"
+import { MDXProvider } from "@mdx-js/react"
+import TableOfContents from "../components/TableOfContents"
 
 const BlogPostTemplate = ({ data, location, children }) => {
   const post = data.mdx
   const siteTitle = data.site.siteMetadata?.title || `Title`
 
+  const shortCodes = {
+    TOC: props => (
+      <TableOfContents {...props} items={post.tableOfContents.items} />
+    ),
+  }
+
   return (
     <ThemeProvider>
-      <PostLayout
-        location={location}
-        headerTitle={siteTitle}
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
-        date={post.frontmatter.date}
-        tags={post.frontmatter.tags}
-      >
-        <div
-          className={postStyles.content}
-          id="md-content"
-          // dangerouslySetInnerHTML={{ __html: post.html }}
-          itemProp="articleBody"
+      <PageProvider value={post}>
+        <PostLayout
+          location={location}
+          headerTitle={siteTitle}
+          title={post.frontmatter.title}
+          description={post.frontmatter.description || post.excerpt}
+          date={post.frontmatter.date}
+          tags={post.frontmatter.tags}
         >
-          {children}
-        </div>
-      </PostLayout>
+          <div
+            className={postStyles.content}
+            id="md-content"
+            // dangerouslySetInnerHTML={{ __html: post.html }}
+            itemProp="articleBody"
+          >
+            <MDXProvider components={shortCodes}>{children}</MDXProvider>
+          </div>
+        </PostLayout>
+      </PageProvider>
     </ThemeProvider>
   )
 }
@@ -52,6 +63,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         tags
       }
+      tableOfContents
     }
     previous: mdx(id: { eq: $previousPostId }) {
       fields {

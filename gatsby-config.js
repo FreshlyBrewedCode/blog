@@ -1,32 +1,4 @@
-const remarkPlugins = [
-  {
-    resolve: `gatsby-remark-images`,
-    options: {
-      maxWidth: 630,
-    },
-  },
-  {
-    resolve: `gatsby-remark-responsive-iframe`,
-    options: {
-      wrapperStyle: `margin-bottom: 1.0725rem`,
-    },
-  },
-  {
-    resolve: "gatsby-remark-prismjs",
-    options: {
-      classPrefix: "language-",
-      showLineNumbers: false,
-      noInlineHighlight: false,
-      prompt: {
-        user: "frebreco",
-        host: "blog",
-        global: true,
-      },
-    },
-  },
-  `gatsby-remark-copy-linked-files`,
-  `gatsby-remark-smartypants`,
-]
+const remarkPlugins = []
 
 module.exports = {
   siteMetadata: {
@@ -64,7 +36,38 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
-        gatsbyRemarkPlugins: [...remarkPlugins],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 630,
+            },
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+          {
+            resolve: "gatsby-remark-prismjs",
+            options: {
+              classPrefix: "language-",
+              showLineNumbers: false,
+              noInlineHighlight: false,
+              prompt: {
+                user: "frebreco",
+                host: "blog",
+                global: true,
+              },
+            },
+          },
+          `gatsby-remark-copy-linked-files`,
+          `gatsby-remark-smartypants`,
+        ],
+        mdxOptions: {
+          rehypePlugins: [require(`rehype-slug`)],
+        },
       },
     },
     `gatsby-plugin-image`,
