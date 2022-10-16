@@ -2,27 +2,30 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import PostLayout from "../components/post-layout"
 import * as postStyles from "../post.module.css"
+import { ThemeProvider } from "../context/ThemeContext"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
 
   return (
-    <PostLayout
-      location={location}
-      headerTitle={siteTitle}
-      title={post.frontmatter.title}
-      description={post.frontmatter.description || post.excerpt}
-      date={post.frontmatter.date}
-      tags={post.frontmatter.tags}
-    >
-      <div
-        className={postStyles.content}
-        id="md-content"
-        dangerouslySetInnerHTML={{ __html: post.html }}
-        itemProp="articleBody"
-      />
-    </PostLayout>
+    <ThemeProvider>
+      <PostLayout
+        location={location}
+        headerTitle={siteTitle}
+        title={post.frontmatter.title}
+        description={post.frontmatter.description || post.excerpt}
+        date={post.frontmatter.date}
+        tags={post.frontmatter.tags}
+      >
+        <div
+          className={postStyles.content}
+          id="md-content"
+          dangerouslySetInnerHTML={{ __html: post.html }}
+          itemProp="articleBody"
+        />
+      </PostLayout>
+    </ThemeProvider>
   )
 }
 

@@ -1,19 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,300;0,400;0,800;1,100;1,300;1,400;1,800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap");
+@import "./styles/easings.css";
 
-:root {
-  --gray-1: #3f3f3f;
-  --gray-2: #32353a;
-  --gray-3: #25282c;
-  --gray-4: #151618;
-  --gray-5: #151618;
-  --gray-6: #111111;
+body {
+  --gray-1: #bac1c9;
+  --gray-2: #c6cbd2;
+  --gray-3: #d2d6db;
+  --gray-4: #dde0e4;
+  --gray-5: #f3f4f6;
+  --gray-6: #fcfcfd;
+  --white-1: #090a0b;
+  --white-2: #1c1f22;
+  /* --primary: #e7c665; */
+  --primary: #1d8f8b;
+
+  --max-width: 700px;
+
+  color-scheme: light;
+  transition: background-color 0.3s;
+}
+body.dark {
+  --gray-1: #454e5f;
+  --gray-2: #3c4453;
+  --gray-3: #333a47;
+  --gray-4: #2b303b;
+  --gray-5: #23272f;
+  --gray-6: #1a1d23;
   --white-1: #eeeeee;
   --white-2: #a9abb3;
   --primary: #e7c665;
-  --secondary: #233a43;
   color-scheme: dark;
 }
+
 * {
   font-family: inherit;
   text-decoration: none;
@@ -42,4 +60,16 @@ h3 {
 }
 a {
   color: var(--primary);
+}
+
+header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+header .dark-toggle-container {
+  margin-left: auto;
+  height: 24px;
+  width: 24px;
 }

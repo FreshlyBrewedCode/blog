@@ -135,7 +135,7 @@ module.exports = {
               }
             `,
             output: "/rss.xml",
-            title: "Gatsby Serial Programmer RSS Feed",
+            title: "Freshly Brewed Blog RSS Feed",
           },
         ],
       },
@@ -155,6 +155,8 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-dark-mode`,
+    `gatsby-plugin-sass`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

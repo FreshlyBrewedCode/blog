@@ -2,15 +2,15 @@ header {
   padding: 2rem 0 4rem 0;
 }
 header .site-title {
-  font-size: 4rem;
+  font-size: 2.5rem;
   font-weight: bolder;
   line-height: 110%;
   color: var(--white-1);
 }
 main {
   margin: 0 auto;
-  max-width: 650px;
-  padding: 3rem 0;
+  max-width: var(--max-width);
+  padding: 0 0;
 }
 
 /* header */
@@ -49,11 +49,15 @@ main {
   line-height: 0;
 }
 .social-wrapper img {
-  filter: invert() !important;
   width: 100%;
   height: 100%;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s;
 }
+
+:global(.dark) .social-wrapper img {
+  filter: invert() !important;
+}
+
 .social-wrapper img:hover {
   transform: scale(1.2);
 }

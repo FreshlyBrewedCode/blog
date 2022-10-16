@@ -9,7 +9,7 @@ header {
 }
 main {
   margin: 0 auto;
-  max-width: 650px;
+  max-width: var(--max-width);
   padding: 3rem 0 4rem 0;
 }
 .article {
@@ -48,6 +48,10 @@ main {
 }
 
 /* markdown content */
+
+.content {
+  font-size: 18px;
+}
 
 .content * {
   line-height: 180%;

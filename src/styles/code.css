@@ -1,4 +1,22 @@
-:root {
+body {
+  --code-text: var(--white-1);
+  --code-background: var(--gray-4);
+  --code-highlight: var(--gray-3);
+  --code-cdata: #858d9f;
+  --code-punctuation: #3a5b7f;
+  --code-property: #385775;
+  --code-number: #802f72;
+  --code-booleans: #365575;
+  --code-string: #508024;
+  --code-operator: #426c95;
+  --code-function: #257991;
+  --code-keyword: #1f5e9c;
+  --code-important: #b58f43;
+}
+body.dark {
+  --code-text: var(--white-1);
+  --code-background: var(--gray-3);
+  --code-highlight: var(--gray-2);
   --code-cdata: #636f88;
   --code-punctuation: #81a1c1;
   --code-property: #81a1c1;
@@ -14,7 +32,7 @@
 code[class*="language-"],
 pre[class*="language-"] {
   /* color: #f8f8f2; */
-  color: var(--white-1);
+  color: var(--code-text);
   background: none;
   /* font-family: "Fira Code", Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
     monospace; */
@@ -32,6 +50,7 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
+  font-size: 16px;
 }
 
 /* Code blocks */
@@ -143,7 +162,7 @@ pre[class*="language-"] {
 }
 
 .gatsby-highlight {
-  background-color: var(--gray-3);
+  background-color: var(--code-background);
   padding: 1em;
   margin: 1em 0;
   overflow: auto;
@@ -179,7 +198,7 @@ pre[class*="language-"] {
 
 /* Line number highlights */
 .gatsby-highlight-code-line {
-  background-color: var(--gray-2);
+  background-color: var(--code-highlight);
   display: block;
   overflow: initial;
   margin-right: -1em;
