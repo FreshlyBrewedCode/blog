@@ -1,3 +1,33 @@
+const remarkPlugins = [
+  {
+    resolve: `gatsby-remark-images`,
+    options: {
+      maxWidth: 630,
+    },
+  },
+  {
+    resolve: `gatsby-remark-responsive-iframe`,
+    options: {
+      wrapperStyle: `margin-bottom: 1.0725rem`,
+    },
+  },
+  {
+    resolve: "gatsby-remark-prismjs",
+    options: {
+      classPrefix: "language-",
+      showLineNumbers: false,
+      noInlineHighlight: false,
+      prompt: {
+        user: "frebreco",
+        host: "blog",
+        global: true,
+      },
+    },
+  },
+  `gatsby-remark-copy-linked-files`,
+  `gatsby-remark-smartypants`,
+]
+
 module.exports = {
   siteMetadata: {
     title: `Freshly Brewed Blog`,
@@ -27,9 +57,16 @@ module.exports = {
       },
     },
     description: `A blog about software development and some other stuff. Grab a coffee and write some code`,
-    siteUrl: `https://gatsbythemeserialprogrammer.gatsbyjs.io`,
+    siteUrl: `https://blog.frebreco.de`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [...remarkPlugins],
+      },
+    },
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -38,6 +75,12 @@ module.exports = {
         name: `blog`,
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-page-creator`,
+    //   options: {
+    //     path: `${__dirname}/content/blog`,
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -45,46 +88,12 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 630,
-            },
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
-          },
-          {
-            resolve: "gatsby-remark-prismjs",
-            options: {
-              classPrefix: "language-",
-              showLineNumbers: false,
-              noInlineHighlight: false,
-              prompt: {
-                user: "frebreco",
-                host: "blog",
-                global: true,
-              },
-            },
-          },
-          {
-            resolve: "gatsby-plugin-tags",
-            options: {
-              templatePath: `${__dirname}/src/templates/tag.js`,
-            },
-          },
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
-        ],
-      },
-    },
+    // {
+    //   resolve: `gatsby-transformer-remark`,
+    //   options: {
+    //     plugins: [...remarkPlugins],
+    //   },
+    // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -104,25 +113,25 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map(node => {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.nodes.map(node => {
                 return Object.assign({}, node.frontmatter, {
                   description: node.excerpt,
                   date: node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ "content:encoded": node.html }],
+                  custom_elements: [{ "content:encoded": node.body }],
                 })
               })
             },
             query: `
               {
-                allMarkdownRemark(
+                allMdx(
                   sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
                   nodes {
                     excerpt
-                    html
+                    body
                     fields {
                       slug
                     }

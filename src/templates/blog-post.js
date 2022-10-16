@@ -4,8 +4,8 @@ import PostLayout from "../components/post-layout"
 import * as postStyles from "../post.module.css"
 import { ThemeProvider } from "../context/ThemeContext"
 
-const BlogPostTemplate = ({ data, location }) => {
-  const post = data.markdownRemark
+const BlogPostTemplate = ({ data, location, children }) => {
+  const post = data.mdx
   const siteTitle = data.site.siteMetadata?.title || `Title`
 
   return (
@@ -21,9 +21,11 @@ const BlogPostTemplate = ({ data, location }) => {
         <div
           className={postStyles.content}
           id="md-content"
-          dangerouslySetInnerHTML={{ __html: post.html }}
+          // dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
-        />
+        >
+          {children}
+        </div>
       </PostLayout>
     </ThemeProvider>
   )
@@ -42,17 +44,16 @@ export const pageQuery = graphql`
         title
       }
     }
-    markdownRemark(id: { eq: $id }) {
+    mdx(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)
-      html
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
         tags
       }
     }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
+    previous: mdx(id: { eq: $previousPostId }) {
       fields {
         slug
       }
@@ -60,7 +61,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    next: markdownRemark(id: { eq: $nextPostId }) {
+    next: mdx(id: { eq: $nextPostId }) {
       fields {
         slug
       }

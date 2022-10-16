@@ -2,10 +2,11 @@ import * as React from "react"
 import { Link, graphql } from "gatsby"
 import TagLayout from "../components/tag-layout"
 import * as blogStyles from "../blog.module.css"
+import Header from "../components/header"
 
 const TagIndex = ({ data, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allMdx.edges
   const { tag } = pageContext
 
   if (posts.length === 0) {
@@ -53,10 +54,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(
+    allMdx(
       sort: { fields: frontmatter___date, order: DESC }
       limit: 1000
-      filter: { fields: { tags: { in: [$tag] } } }
+      filter: { frontmatter: { tags: { in: [$tag] } } }
     ) {
       totalCount
       edges {
