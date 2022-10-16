@@ -1,12 +1,26 @@
 header {
   padding: 2rem 0 4rem 0;
 }
+header > a {
+  display: flex;
+  align-items: center;
+}
 .site-title {
   font-size: 1.4rem;
   font-weight: bolder;
   line-height: 110%;
   color: var(--white-1);
 }
+.site-icon {
+  height: 48px;
+  margin-right: 1.5em;
+  transform: translateY(-4px);
+  filter: invert(1);
+}
+:global(.dark) .site-icon {
+  filter: none;
+}
+
 main {
   margin: 0 auto;
   max-width: var(--max-width);
