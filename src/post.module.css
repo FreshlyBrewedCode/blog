@@ -97,6 +97,17 @@ main {
   font-weight: 300;
   border-left: 0.3rem solid currentColor;
 }
+.content blockquote blockquote {
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: end;
+}
+.content blockquote blockquote p::before {
+  display: inline;
+  content: "- ";
+}
+
 .content strong {
   font-weight: bold;
 }
