@@ -20,7 +20,7 @@
     }
   }
 
-  [data-theme="dark"] & {
+  :global(.dark) & {
     & > .sun {
       transform: scale(1.75);
     }
@@ -57,7 +57,7 @@
       }
     }
 
-    [data-theme="dark"] & {
+    :global(.dark) & {
       & > .sun {
         transform: scale(1.75);
         transition-timing-function: var(--ease-3);
@@ -105,7 +105,7 @@
     stroke-linecap: round;
   }
 
-  [data-theme="dark"] & {
+  :global(.dark) & {
     --icon-fill: hsl(210 10% 70%);
     --icon-fill-hover: hsl(210 15% 90%);
   }

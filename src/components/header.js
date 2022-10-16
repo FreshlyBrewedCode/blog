@@ -14,7 +14,7 @@ const Header = ({ title }) => {
         <img className={postStyles.siteIcon} src="/favicon.ico" />
         <h1 className={postStyles.siteTitle}>{title}</h1>
       </Link>
-      <div data-theme={theme} className="dark-toggle-container">
+      <div className="dark-toggle-container">
         <DarkToggleButton
           onClick={() => toggleTheme(theme === "dark" ? "light" : "dark")}
         />
