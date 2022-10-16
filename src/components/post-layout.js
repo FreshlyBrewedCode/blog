@@ -14,6 +14,7 @@ const PostLayout = ({
   date,
   tags,
   children,
+  noComments = false,
 }) => {
   const { theme } = useTheme()
 
@@ -36,23 +37,25 @@ const PostLayout = ({
         {children}
       </section>
       <section>
-        <Giscus
-          id="comments"
-          repo="freshlybrewedcode/blog"
-          repoId="R_kgDOIOffwA"
-          category="Comments"
-          categoryId="DIC_kwDOIOffwM4CSAL8"
-          mapping="og:title"
-          strict="0"
-          reactionsEnabled="1"
-          emit-metadata="0"
-          inputPosition="top"
-          theme={theme === "dark" ? "dark_dimmed" : "light"}
-          lang="en"
-          loading="lazy"
-          crossorigin="anonymous"
-          async
-        />
+        {!noComments && (
+          <Giscus
+            id="comments"
+            repo="freshlybrewedcode/blog"
+            repoId="R_kgDOIOffwA"
+            category="Comments"
+            categoryId="DIC_kwDOIOffwM4CSAL8"
+            mapping="og:title"
+            strict="0"
+            reactionsEnabled="1"
+            emit-metadata="0"
+            inputPosition="top"
+            theme={theme === "dark" ? "dark_dimmed" : "light"}
+            lang="en"
+            loading="lazy"
+            crossorigin="anonymous"
+            async
+          />
+        )}
       </section>
       <footer>
         <p>&copy; {new Date().getFullYear()}</p>
